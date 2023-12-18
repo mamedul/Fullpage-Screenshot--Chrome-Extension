@@ -1,0 +1,55 @@
+(function () {
+
+    window.onload = function(e){
+        setTimeout(function(){
+            html2canvas(document.body).then(function(canvas) {
+                document.body.appendChild(canvas);
+            });
+        }, 2000);
+    };
+
+    console.log("Content script loaded!");
+    var scrollPosition = {x: 0, y: 0};
+    var overflow = {x: undefined, y: undefined };
+    // Listen for messages from the background script or other parts of the extension
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+        if (request.action === 'initiateCapture') {
+            overflow = {x: window.scrollX || document.documentElement.scrollLeft, y: window.scrollY || document.documentElement.scrollTop };
+            scrollPosition = {x: window.scrollX || document.documentElement.scrollLeft, y: window.scrollY || document.documentElement.scrollTop };
+            window.scrollTo(0, 0);
+            sendResponse(true);
+        } else if (request.action === 'getViewportSize') {
+            // Implement logic to get the viewport size
+            var viewportSize = {
+                innerWidth: window.innerWidth,
+                innerHeight: window.innerHeight,
+                totalWidth: Math.max(document.documentElement.scrollWidth, document.body.scrollWidth),
+                totalHeight: Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
+            };
+            // Send the viewport size back to the background script
+            sendResponse(viewportSize);
+        } else if (request.action === 'scrollAndCapture') { console.log('scrollTo:', request.scrollOffset);
+            // Implement logic to scroll and capture
+            window.scrollTo(0, request.scrollOffset);
+            // send back response
+            sendResponse(true);
+        } else if (request.action === 'cancelled') {
+            console.log( 'cancelled' );
+            window.scrollTo( scrollPosition.x, scrollPosition.y );
+        }
+    });
+
+    // Connect to port
+    var port = chrome.runtime.connect({ name: 'content-script' }); //port.postMessage({ action: 'capture' });
+    console.log(port);
+	
+	console.log('Connected to the background script');
+	
+    // Optionally, you can handle the disconnect event
+    port.onDisconnect.addListener(function () {
+        console.log('Disconnected from the background script');
+        window.scrollTo( scrollPosition.x, scrollPosition.y );
+        port = chrome.runtime.connect({ name: 'content-script' }); console.log('Connected to the background script');
+    });
+
+})();

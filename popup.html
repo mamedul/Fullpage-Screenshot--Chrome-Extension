@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Full Page Screenshot2</title>
+	<style>
+		body {
+			font-size: 16px;
+			font-size: 1rem;
+			padding: 0;
+			margin: 0;
+			width: 192px;
+			width: 12rem;
+			height: 256px;
+			height: 16rem;
+			color:#191970;
+			background-color: #f0f8ff;
+		}
+
+		#main{
+			padding: 16px;
+			padding: 1rem;
+		}
+
+		#error {
+			color: red;
+		}
+
+		#error:empty {
+			display: none;
+		}
+
+		#status {
+			color: black;
+		}
+
+		#status:empty {
+			display: none;
+		}
+	</style>
+	<script src="./html2canvas.min.js"></script>
+</head>
+<body">
+	<main id="main" class="main-conatainer">
+		<head id="head" class="head">
+
+		</head>
+		<div id="container" class="container">
+			<p id="error"></p>
+			<p id="status"></p>
+			<button id="captureArea" class="actionButton" data-lang="captureArea">Area</button>
+			<button id="captureFullpage" class="actionButton" data-lang="captureFullpage">Full Page</button>
+		</div>
+		<footer id="footer" class="footer">
+
+		</footer>
+	</main>
+	<script src="popup.js"></script>
+</body>
+</html>

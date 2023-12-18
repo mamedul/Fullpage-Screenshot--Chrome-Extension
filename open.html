@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Full Page Screenshot2</title>
+	<style>
+		html{
+			height: 100%;
+		}
+		body {
+			font-size: 16px;
+			font-size: 1rem;
+			padding: 0px;
+			padding: 0rem;
+			margin: 0px;
+			margin: 0rem;
+			height: 100%;
+			color:#191970;
+			background-color: #f0f8ff;
+		}
+
+		#main{
+			padding: 16px;
+			padding: 1rem;
+		}
+
+		#error {
+			color: red;
+		}
+
+		#error:empty {
+			display: none;
+		}
+
+		#status {
+			color: black;
+		}
+
+		#status:empty {
+			display: none;
+		}
+	</style>
+	<script src="./html2canvas.min.js"></script>
+</head>
+<body>
+	<main id="main" class="main-conatainer">
+		<head id="head" class="head">
+
+		</head>
+		<div id="container" class="container">
+			<div id="imageListContainer" class="image-list-container">
+				
+			</div>
+			<div id="imageContainer" class="image-container">
+				<img id="screenshot" class="screenshot" src="" alt="">
+			</div>
+		</div>
+		<footer id="footer" class="footer">
+
+		</footer>
+	</main>
+	<script src="open.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+	"extName": {
+		"message": "Full Page Screenshot",
+		"description": "Extension name"
+	},
+	"extShortname": {
+		"message": "Full Page Screenshot",
+		"description": "Extension short name"
+	},
+	"extDescription": {
+		"message": "Capture full page screenshots in browser",
+		"description": "Extension description"
+	},
+	"captureArea": {
+		"message": "Area",
+		"description": "Popup captureArea button"
+	},
+	"captureFullpage": {
+		"message": "Fullpage",
+		"description": "Popup captureFullpage button"
+	}
+}
